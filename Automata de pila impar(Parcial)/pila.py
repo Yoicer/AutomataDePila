@@ -5,10 +5,12 @@ class Pila:
 
     def apilar(self, x):
         self.pila.append(x)
-        print('Se apilo: ',x)
 
     def quitar(self):
-        return self.pila.pop()
+        if(self.vacia()):
+            print('la pila esta vacia')
+        else:
+            return self.pila.pop()
 
     def cima(self):
         return self.pila[len(self.pila)-1]
