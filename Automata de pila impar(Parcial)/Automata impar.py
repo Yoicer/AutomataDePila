@@ -1,13 +1,10 @@
 import pila
 
-import tkinter
-from tkinter import Label
-from tkinter import *
-from tkinter import ttk
-
 class Autopi:
-    def __init__(self, p):
-        self.pila = p
+    def __init__(self):
+        self.pila = pila.Pila()
+        self.resultado=[]
+        self.transiciones=[]
         self.estado_1 = True
         self.estado_2 = False
         self.estado_final = False
@@ -74,7 +71,6 @@ class Autopi:
     def c_n_n(self):
         self.pila.quitar()
         self.pila.apilar('#')
-        print('apila:  #')
         self.activaEstado_2()
     def c_b_b(self):
         self.pila.quitar()
@@ -98,15 +94,17 @@ class Autopi:
         self.pila.quitar()
         self.pila.apilar('#')
         self.activaEstado_final()
-
-    
-        
-
-    def prueba(self, palabra):
-        palabra=palabra+' '
-        print('Estado 1  -  Estado 2  -  Estado Final  -  Cima Pila  -  Caracter')
+#hace la prueba y la respectiva transaciones del automata
+    def validar(self, palabra):
+        palabra=palabra+'  '
+        head = '| Estado 1    -    Estado 2     -   Estado final    -     Cima    -   Caracter |'
+        div=      '|------------------------------------------------------------------------------|'
+        self.resultado.append(head)
+        self.resultado.append(div)
         for caracter in palabra:
-            print(self.getEstado_1(),'           ', self.getEstado_2(),'         ',self.getEstado_final(),'    ', self.pila.cima(),'              ', caracter)
+            paso = "{:4}            -      {:4}         -      {:4}                 -        {:4}             -        {:4} ".format(str(self.getEstado_1()), str(self.getEstado_2()),
+                                                                                                               str(self.getEstado_final()),str(self.pila.cima()),str(caracter))
+            self.resultado.append(paso)
             if (caracter != 'a' and caracter != 'b' and caracter != 'c' and caracter != '#' and caracter != ' '):
                 print('El caracter es invalido en el lenguaje !!!')
                 break
@@ -147,15 +145,18 @@ class Autopi:
                     print('palabra terminada')
                     if (self.pila.cima() == '#' and self.getEstado_2()):
                         self.y_n_n()
-         
 
+
+        nega='* La palabra no es palondrime*'
         if (self.getEstado_final()):
-            print('*La palabra es palindrome*')
+            acept='*La palabra es palindrome*'
+            self.resultado.append(acept)
         elif(self.getEstado_1()):
-            print('*Las Palabras del lenguaje deben llevar por lomenos una C *')
-            print('* La palabra no es palondrime*')
+            error='*Las Palabras del lenguaje deben llevar por lomenos una C *'
+            self.resultado.append(error)
+            self.resultado.append(nega)
         else:
-            print('* La palabra no es palondrime*')
+            self.resultado.append(nega)
             
 
 
