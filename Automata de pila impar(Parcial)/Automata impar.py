@@ -9,7 +9,6 @@ class Autopi:
         self.estado_2 = False
         self.estado_final = False
 
-#control del estado en el que se esta
     def getEstado_1(self):
         return self.estado_1
     def getEstado_2(self):
@@ -17,7 +16,6 @@ class Autopi:
     def getEstado_final(self):
         return self.estado_final
 
-#cambia de estado activando el estado al que se rueda
     def activaEstado_1(self):
         self.estado_1=True
         self.estado_2=False
@@ -33,7 +31,6 @@ class Autopi:
         self.estado_1=False
         self.estado_2=False
 
-#transiciones estando en estado 1 :)
     #transiciones con b
     def b_b_bb(self):
         self.pila.quitar()
@@ -51,7 +48,8 @@ class Autopi:
         self.pila.apilar('#')
         self.pila.apilar('b')
         self.activaEstado_1()
-#transiciones con a
+        
+    #transiciones con a
     def a_b_ba(self):
         self.pila.quitar()
         self.pila.apilar('b')
@@ -67,7 +65,8 @@ class Autopi:
         self.pila.apilar('a')
         self.pila.apilar('a')
         self.activaEstado_1()
-#transiciones con c
+        
+    #transiciones con c
     def c_n_n(self):
         self.pila.quitar()
         self.pila.apilar('#')
@@ -81,7 +80,6 @@ class Autopi:
         self.pila.apilar('a')
         self.activaEstado_2()
 
-#tansiciones estando en el estado 2 :)
     def b_b_y(self):
         self.pila.quitar()
         self.activaEstado_2()
@@ -94,7 +92,8 @@ class Autopi:
         self.pila.quitar()
         self.pila.apilar('#')
         self.activaEstado_final()
-#hace la prueba y la respectiva transaciones del automata
+
+
     def validar(self, palabra):
         palabra=palabra+'  '
         head = '| Estado 1    -    Estado 2     -   Estado final    -     Cima    -   Caracter |'
@@ -105,8 +104,9 @@ class Autopi:
             paso = "{:4}            -      {:4}         -      {:4}                 -        {:4}             -        {:4} ".format(str(self.getEstado_1()), str(self.getEstado_2()),
                                                                                                                str(self.getEstado_final()),str(self.pila.cima()),str(caracter))
             self.resultado.append(paso)
-            if (caracter != 'a' and caracter != 'b' and caracter != 'c' and caracter != '#' and caracter != ' '):
-                print('El caracter es invalido en el lenguaje !!!')
+            if (caracter != 'a' and caracter != 'b' and caracter != 'c'  and caracter != ' '):
+                invali='El caracter es invalido en el lenguaje !!!'
+                self.resultado.append(invali)
                 break
             elif (self.getEstado_1()):
                 if (caracter=='b'):
@@ -157,13 +157,6 @@ class Autopi:
             self.resultado.append(nega)
         else:
             self.resultado.append(nega)
-            
-
-
-pila=pila.Pila()
-auto= Autopi(pila)
-auto.prueba('abcba')
-
 
 
 
