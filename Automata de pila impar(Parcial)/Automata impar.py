@@ -158,8 +158,6 @@ class Autopi:
         else:
             self.resultado.append(nega)
 
-
-
     				
 
 
