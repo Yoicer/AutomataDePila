@@ -114,7 +114,7 @@ class Autopi:
                     if (self.pila.cima()== 'b'):
                         self.b_b_bb()
                         trans='b/b/bb'
-                        self.transciones.append(trans)
+                        self.transiciones.append(trans)
                     elif (self.pila.cima()== 'a'):
                         self.b_a_ab()
                         trans='b/a/ab'
