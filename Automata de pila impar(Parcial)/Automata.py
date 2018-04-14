@@ -96,15 +96,15 @@ class Autopi:
 
     def validar(self, palabra):
         palabra=palabra+'  '
-        head = '| Estado 1    -    Estado 2     -   Estado final    -     Cima    -   Caracter |'
-        div=      '|------------------------------------------------------------------------------|'
+        head = '|Estado 1 - Estado 2 - Estado final - Cima -  Caracter |'
+        div=      '|----------------------------------------------------------------------------|'
         self.resultado.append(head)
         self.resultado.append(div)
         for caracter in palabra:
-            paso = "{:4}            -      {:4}         -      {:4}                 -        {:4}             -        {:4} ".format(str(self.getEstado_1()), str(self.getEstado_2()),
+            paso = "{:6}   -  {:6}   -  {:6}      -   {:6} -   {:6} ".format(str(self.getEstado_1()), str(self.getEstado_2()),
                                                                                                                str(self.getEstado_final()),str(self.pila.cima()),str(caracter))
             self.resultado.append(paso)
-            print(paso)
+
             if (caracter != 'a' and caracter != 'b' and caracter != 'c'  and caracter != ' '):
                 invali='El caracter es invalido en el lenguaje !!!'
                 self.resultado.append(invali)
@@ -182,18 +182,4 @@ class Autopi:
             self.resultado.append(nega)
         else:
             self.resultado.append(nega)
-
-  
-
-
-
-
-    				
-
-
-		
-
-
-
-
 
