@@ -1,9 +1,9 @@
 des=[]
 lin='Descripcion: este es un automatade de pila que tiene la'
 lin1='          funcionalidad de reconocer un palindromo de largo'
-lin2='          impar, donde el caracter central es un separador que'
+lin2='          impar, donde el caracter central C es un separador que'
 lin3='          no esta presente en el prefijo que lo antecede. Es decir'
-lin4='          la cadena a ser aceptada toma la forma C= ZcZ¨'
+lin4='          la cadena a ser aceptada toma la forma l= ZcZ¨'
 lin5='          donde Z pertenece a {a, b}*'
 lin6='          Esto siendo P el estado 1, Q el estado 2 y R el estado final'
 
