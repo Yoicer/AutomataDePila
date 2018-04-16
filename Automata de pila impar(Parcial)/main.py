@@ -16,10 +16,8 @@ class Principal:
     def cargar_resultado(self,listbox,listbox2):
         for r in self.resultado:
             listbox.insert(END,r)
-        listbox2.insert(END,'****** Transiciones ******')
-        listbox2.insert(END,'-----------------------------------------------------')
         for t in self.tran:
-            listbox2.insert(END,'        '+ t)
+            listbox2.insert(END,t)
           
     def sgda_ventana(self):
         segunda_ventana=tkinter.Toplevel(self.ventana)
