@@ -93,15 +93,25 @@ class Autopi:
         self.pila.apilar('#')
         self.activaEstado_final()
 
+    def encabezados(self, palab):
+        head = '|Estado 1 - Estado 2 - Estado final - Cima -  Caracter |'
+        div=      '|----------------------------------------------------------------------------|'
+        self.resultado.append('Palabra: '+palab)
+        self.resultado.append(head)
+        self.resultado.append(div)
+        
+        self.transiciones.append('Palabra: '+palab)
+        self.transiciones.append('****** Transiciones ******')
+        self.transiciones.append('-----------------------------------------------------')
+        
+
 
     def validar(self, palabra):
         palabra=palabra+'  '
-        head = '|Estado 1 - Estado 2 - Estado final - Cima -  Caracter |'
-        div=      '|----------------------------------------------------------------------------|'
-        self.resultado.append(head)
-        self.resultado.append(div)
+        self.encabezados(palabra)
+
         for caracter in palabra:
-            paso = "{:6}   -  {:6}   -  {:6}      -   {:6} -   {:6} ".format(str(self.getEstado_1()), str(self.getEstado_2()),
+            paso = "{:6}   -  {:6}   -  {:6}      -   {:4} -   {:4} ".format(str(self.getEstado_1()), str(self.getEstado_2()),
                                                                                                                str(self.getEstado_final()),str(self.pila.cima()),str(caracter))
             self.resultado.append(paso)
 
@@ -114,54 +124,54 @@ class Autopi:
                     if (self.pila.cima()== 'b'):
                         self.b_b_bb()
                         trans='b/b/bb'
-                        self.transiciones.append(trans)
+                        self.transiciones.append('      '+trans)
                     elif (self.pila.cima()== 'a'):
                         self.b_a_ab()
                         trans='b/a/ab'
-                        self.transiciones.append(trans)
+                        self.transiciones.append('      '+trans)
                     elif (self.pila.cima() == '#'):
                         self.b_n_nb()
                         trans='b/#/#b'
-                        self.transiciones.append(trans)
+                        self.transiciones.append('      '+trans)
                 elif (caracter ==  'a'):
                     if (self.pila.cima()== 'b'):
                         self.a_b_ba()
                         trans='a/b/ba'
-                        self.transiciones.append(trans)
+                        self.transiciones.append('      '+trans)
                     elif (self.pila.cima()== 'a'):
                         self.a_a_aa()
                         trans='a/a/aa'
-                        self.transiciones.append(trans)
+                        self.transiciones.append('      '+trans)
                     elif (self.pila.cima() == '#'):
                         self.a_n_na()
                         trans='a/#/#a'
-                        self.transiciones.append(trans)
+                        self.transiciones.append('      '+trans)
                 elif (caracter == 'c'):
                     if (self.pila.cima()== 'b'):
                         self.c_b_b()
                         trans='c/b/b'
-                        self.transiciones.append(trans)
+                        self.transiciones.append('      '+trans)
                     elif (self.pila.cima()== 'a'):
                         self.c_a_a()
                         trans='c/a/a'
-                        self.transiciones.append(trans)
+                        self.transiciones.append('      '+trans)
                     elif (self.pila.cima() == '#'):
                         self.c_n_n()
                         trans='c/#/#'
-                        self.transiciones.append(trans)
+                        self.transiciones.append('      '+trans)
             elif (self.getEstado_2()):
                 if (caracter == 'b'):
                     if (self.pila.cima() == 'b'):
                         self.b_b_y()
                         trans='b/b/y'
-                        self.transiciones.append(trans)
+                        self.transiciones.append('      '+trans)
                     else:
                         break
                 elif (caracter == 'a'):
                     if (self.pila.cima() == 'a'):
                         self.a_a_y()
                         trans='a/a/y'
-                        self.transiciones.append(trans)
+                        self.transiciones.append('      '+trans)
                     else:
                         break
                 elif(caracter == ' '):
@@ -169,7 +179,7 @@ class Autopi:
                     if (self.pila.cima() == '#' and self.getEstado_2()):
                         self.y_n_n()
                         trans='y/#/#'
-                        self.transiciones.append(trans)
+                        self.transiciones.append('      '+trans)
 
 
         nega='* La palabra no es palondrime*'
