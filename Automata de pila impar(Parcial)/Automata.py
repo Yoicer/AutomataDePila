@@ -187,7 +187,7 @@ class Autopi:
             acept='*La palabra es palindrome*'
             self.resultado.append(acept)
         elif(self.getEstado_1()):
-            error='*Las Palabras del lenguaje deben llevar por lomenos una C *'
+            error='*Las Palabras del lenguaje deben llevar por lo menos una C *'
             self.resultado.append(error)
             self.resultado.append(nega)
         else:
