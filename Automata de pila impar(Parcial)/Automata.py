@@ -94,7 +94,7 @@ class Autopi:
         self.activaEstado_final()
 
     def encabezados(self, palab):
-        head = '|Estado 1 - Estado 2 - Estado final - Cima -  Caracter |'
+        head = '|Estado 1 - Estado 2 - Estado final - Caracter -  Cima |'
         div=      '|----------------------------------------------------------------------------|'
         self.resultado.append('Palabra: '+palab)
         self.resultado.append(head)
@@ -112,7 +112,7 @@ class Autopi:
 
         for caracter in palabra:
             paso = "{:6}   -  {:6}   -  {:6}      -   {:4} -   {:4} ".format(str(self.getEstado_1()), str(self.getEstado_2()),
-                                                                                                               str(self.getEstado_final()),str(self.pila.cima()),str(caracter))
+                                                                                                               str(self.getEstado_final()),str(caracter),str(self.pila.cima()))
             self.resultado.append(paso)
 
             if (caracter != 'a' and caracter != 'b' and caracter != 'c'  and caracter != ' '):
