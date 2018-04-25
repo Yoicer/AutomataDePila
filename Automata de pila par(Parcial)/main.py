@@ -1,5 +1,5 @@
 import Automata 
-import  Descripcion 
+import  Descripcion
 
 import tkinter
 from tkinter import Label
@@ -7,9 +7,9 @@ from tkinter import *
 from tkinter import ttk
 
 class Principal:
-    def __init__(self,resultado,transa,descripcion):
-        self.resultado=resultado
-        self.tran=transa
+    def __init__(self,descripcion):
+        self.resultado=None
+        self.tran=None
         self.descri=descripcion
         self.ventana=tkinter.Tk()
     
@@ -46,16 +46,32 @@ class Principal:
         listbox2.pack()
         self.ventana.iconify()
 
+    def  evaluar(self):
+        auto=Automata.Autopi(self.text.get())
+        auto.validar()
+        
+        self.resultado=auto.resultado
+        self.tran=auto.transiciones
+
+        self.sgda_ventana()
+        
+
     def main(self):
         self.ventana.title('Ventana principal')
         img = PhotoImage(file="img.gif")
         widget = Label(self.ventana, image=img).pack()
 
-        boton = tkinter.Button(self.ventana, text="ver procedimiento", command=self.sgda_ventana, bg="#38EB5C",relief="groove")
+        plbra=tkinter.Entry(self.ventana)
+        plbra.pack()
+        self.text=plbra
+        
+        boton = tkinter.Button(self.ventana, text="Evaluar", command=self.evaluar, bg="#38EB5C",relief="groove")
         boton['bg'] = 'black'
         boton['fg'] = "#38EB5C"
         boton.pack()
         
+
+     
         listbox = Listbox(self.ventana)
         listbox.place(relwidth=1 ,relheight=-0.50)
         listbox['bg'] = 'black'
@@ -65,7 +81,7 @@ class Principal:
         for des in self.descri:
             listbox.insert(END, des)
             
-        listbox.pack(side=LEFT, fill=BOTH, expand=1)
+        listbox.pack(fill=X, expand=1)
         
         scrollbar = Scrollbar(self.ventana)
         scrollbar.pack(side=RIGHT, fill=Y)
@@ -79,13 +95,8 @@ class Principal:
 
 
 
-auto=Automata.Autopi()
-archi=open('palabra.txt', 'r')
-palabra=archi.read()
-auto.validar(palabra)
-
 des = Descripcion.des
-p=Principal(auto.resultado,auto.transiciones,des)
+p=Principal(des)
 p.main()
 
         
