@@ -1,13 +1,14 @@
 import pila
 
 class Autopi:
-    def __init__(self):
+    def __init__(self,palab):
         self.pila = pila.Pila()
         self.resultado=[]
         self.transiciones=[]
         self.estado_1 = True
         self.estado_2 = False
         self.estado_final = False
+        self.palabra=palab
 
     def getEstado_1(self):
         return self.estado_1
@@ -92,12 +93,11 @@ class Autopi:
         self.transiciones.append('-----------------------------------------------------')
         
 
-
-    def validar(self, palabra):
-        n=len(palabra)
+    def validar(self):
+        n=len(self.palabra)
         i=1
-        palabra=palabra+'  '
-        self.encabezados(palabra)
+        palabra=self.palabra+' '
+        self.encabezados(self.palabra)
 
         for caracter in palabra:
             paso = "{:6}   -  {:6}   -  {:6}      -   {:4} -   {:4} ".format(str(self.getEstado_1()), str(self.getEstado_2()),
@@ -179,7 +179,6 @@ class Autopi:
             self.resultado.append(nega)
         else:
             self.resultado.append(nega)
-
   
 
 
