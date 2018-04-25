@@ -1,13 +1,14 @@
 import pila
 
 class Autopi:
-    def __init__(self):
+    def __init__(self,palabra):
         self.pila = pila.Pila()
         self.resultado=[]
         self.transiciones=[]
         self.estado_1 = True
         self.estado_2 = False
         self.estado_final = False
+        self.palabra=palabra
 
     def getEstado_1(self):
         return self.estado_1
@@ -105,9 +106,9 @@ class Autopi:
         self.transiciones.append('-----------------------------------------------------')
         
 
-
-    def validar(self, palabra):
-        palabra=palabra+'  '
+    def validar(self):
+        palabra=self.palabra+'  '
+        print(palabra)
         self.encabezados(palabra)
 
         for caracter in palabra:
@@ -187,7 +188,7 @@ class Autopi:
             acept='*La palabra es palindrome*'
             self.resultado.append(acept)
         elif(self.getEstado_1()):
-            error='*Las Palabras del lenguaje deben llevar por lo menos una C *'
+            error='*Las Palabras del lenguaje deben llevar por lomenos una C *'
             self.resultado.append(error)
             self.resultado.append(nega)
         else:
